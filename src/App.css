@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 
 canvas {
@@ -7,6 +10,6 @@ canvas {
 }
 
 svg {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }

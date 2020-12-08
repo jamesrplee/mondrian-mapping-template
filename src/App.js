@@ -17,15 +17,14 @@ const MondrianCanvas = props => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    var context = new C2S(500,500)
+    var context = new C2S(window.innerWidth, window.innerWidth)
 
     const size = window.innerWidth;
     const dpr = window.devicePixelRatio;
 
     canvas.width = size * dpr;
     canvas.height = size * dpr;
-    context.scale(dpr, dpr);
-    context.lineWidth = 8;
+    context.lineWidth = 4;
 
     const step = size / 7;
     const white = '#F2F5F1';
@@ -128,7 +127,7 @@ const MondrianCanvas = props => {
     draw()
 
     var mySvg = context.getSvg()
-    mySvg.setAttribute("viewBox", "0 0 2560 2560")
+    mySvg.setAttribute("viewBox", `0 0 ${window.innerWidth} ${window.innerWidth}`)
     setSvg(mySvg)
 
   }, []) // useEffect
