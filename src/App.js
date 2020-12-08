@@ -1,5 +1,7 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './App.css';
+import C2S from 'canvas2svg'
+
 
 function App() {
   return (
@@ -10,12 +12,12 @@ function App() {
 }
 
 const MondrianCanvas = props => {
+  const [svg, setSvg] = useState(null)
   const canvasRef = useRef(null);
-
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
+    var context = new C2S(500,500)
 
     const size = window.innerWidth;
     const dpr = window.devicePixelRatio;
@@ -125,10 +127,27 @@ const MondrianCanvas = props => {
 
     draw()
 
+    var mySvg = context.getSvg()
+    mySvg.setAttribute("viewBox", "0 0 2560 2560")
+    setSvg(mySvg)
+
   }, []) // useEffect
 
   return (
-    <canvas ref={canvasRef} {...props} />
+    <>
+      <canvas ref={canvasRef} {...props} />
+
+      <div
+        id="svg"
+      >
+        <svg
+          width={svg && svg.width.baseVal.value}
+          height={svg && svg.height.baseVal.value}
+          viewBox={svg && `${svg.viewBox.baseVal.x} ${svg.viewBox.baseVal.y} ${svg.viewBox.baseVal.width} ${svg.viewBox.baseVal.height}`}
+          dangerouslySetInnerHTML={svg && { __html: svg.innerHTML }}
+        />
+      </div>
+    </>
   )
 }
 
