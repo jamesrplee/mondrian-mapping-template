@@ -6,7 +6,7 @@ import './App.css';
 function App({svg}) {
   return (
     <div className="App">
-      {svg && `hi ${svg}`}
+      {svg && `hi ${JSON.stringify(svg)}`}
       {/* <div
         id="svg"
       >
