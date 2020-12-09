@@ -6,7 +6,7 @@ import './App.css';
 function App({svg}) {
   return (
     <div className="App">
-      {svg && svg.innerHTML}
+      {svg && `hi ${svg}`}
       {/* <div
         id="svg"
       >
